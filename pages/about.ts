@@ -1,5 +1,5 @@
-const AboutComponent = () => { 
+const PizzaComponent = () => { 
     return "about"
 }
 
-export default AboutComponent
+export default PizzaComponent

@@ -3,15 +3,13 @@
 -- [what is NextJs ?](https://nextjs.org/)
 
 #### Using Skills
-
 ```js
-ReactJs;
-NodeJs;
-NextJs;
+    ReactJs
+    NodeJs
+    NextJs
 ```
 
-#### Learning Theory
-
+#### Learning Theory 
 ```js
     Tour of Next
     Pages
@@ -23,19 +21,16 @@ NextJs;
 ```
 
 #### Skills Needed Before Learning
-
 ```js
-Javascript;
-ReactJs;
+    Javascript
+    ReactJs
 ```
 
 #### Command Line
-
 ```js
     npx create-next-app@latest --typescript
     npm run dev
 ```
-
 ### Learn More
 
 To learn more about Next.js, take a look at the following resources:
