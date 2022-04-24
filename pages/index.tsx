@@ -6,6 +6,7 @@
 // (Ex : javascript를 허용해 달라는 메세지를 날린다.)
 
 import { useState } from "react";
+import NavBar from "../components/navBar";
 
 const HoneComponent = () => { 
     const [count, setCount] = useState(0)
@@ -16,7 +17,8 @@ const HoneComponent = () => {
 
     return (<>
         <div>
-            Hello, { count }
+            <NavBar />
+            Hello, {count}
 
             <button onClick={() => { 
                 handlingCount()
