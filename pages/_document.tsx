@@ -1,40 +1,34 @@
-// import Document, { DocumentContext } from 'next/document';
-// import { ServerStyleSheet } from 'styled-components';
+import Document, { DocumentContext } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
+// you can read next.js public document
+// https://nextjs.org/docs/advanced-features/custom-document#caveats
 
-// export default class MyDocument extends Document {
-//   static async getInitialProps(ctx: DocumentContext) {
-//     const sheet = new ServerStyleSheet();
-//     const originalRenderPage = ctx.renderPage;
-
-//     try {
-//       ctx.renderPage = () => originalRenderPage({
-//         enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-//       });
-
-//       const initialProps = await Document.getInitialProps(ctx);
-//       return {
-//         ...initialProps,
-//         styles: (
-//           <>
-//             {initialProps.styles}
-//             {sheet.getStyleElement()}
-//           </>
-//         ),
-//       };
-//     } finally {
-//       sheet.seal();
-//     }
-//   }
-// }
-import Document, { DocumentContext } from 'next/document'
-
-class MyDocument extends Document {
+// 오류가 발생하지만 ssr styled-component가 작동한다 뭔 오륜지 모르겟다.
+class ServerSideStyledComponent extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
+    const sheet = new ServerStyleSheet()
+    const originPage = ctx.renderPage
 
-    return initialProps
+    try {
+      ctx.renderPage = () => originPage({
+        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />)
+      })
+
+      const initProps = await Document.getInitialProps(ctx)
+      
+      return {
+        ...initProps, styles: (
+          <>
+            {initProps.styles}
+            {sheet.getStyleElement()}
+          </>
+      )}
+
+    } finally { 
+      sheet.seal()
+    }
   }
 }
 
-export default MyDocument
+export default ServerSideStyledComponent
